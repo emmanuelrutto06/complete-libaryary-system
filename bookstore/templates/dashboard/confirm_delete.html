@@ -31,10 +31,10 @@
             <form method="post">
                 {% csrf_token %}
                 <div class="alert alert-warning" role="alert">
-                  Are you sure to delete detail of book {{ object }} ?
+                  Are you sure you want to delete the details of book {{ object }} ?
                 </div>
                 <input type="submit" class="btn btn-danger" value="Yes, delete it" />
-                <a class="btn btn-success" href="{% url 'dashboard' %}">No, just I've tried the delete button</a>
+                <a class="btn btn-success" href="{% url 'dashboard' %}">NO</a>
             </form>
         </div>
     </div>

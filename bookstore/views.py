@@ -7,7 +7,8 @@ from .models import User, Book, Chat, DeleteRequest, Feedback
 from django.contrib import messages
 from django.db.models import Sum
 from django.views.generic import CreateView, DetailView, DeleteView, UpdateView, ListView
-from .forms import ChatForm, BookForm, UserForm
+from .forms import ChatForm, BookForm, UserForm, StudentForm, Book_IssueForm, BookInstance
+from .models import Student
 from . import models
 import operator
 import itertools
@@ -69,28 +70,7 @@ def registerView(request):
 	    messages.error(request, 'Registration fail, try again later')
 	    return redirect('regform')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-			
-
-
-# Publisher views
+######### Publisher views
 @login_required
 def publisher(request):
 	return render(request, 'publisher/home.html')
@@ -113,6 +93,85 @@ def feedback_form(request):
 @login_required
 def about(request):
 	return render(request, 'publisher/about.html')	
+
+#########students views
+@login_required
+# def borrow_form(request):
+# 	return render(request, 'students/borrow.html')
+
+# def issued_books_form(request):
+# 	return render(request, 'students/issued_books.html')
+
+def add_studentform(request):
+	return render(request, 'dashboard/add_student.html')
+
+def students_form(request):
+	return render(request, 'dashboard/add_student.html')
+
+# def Book_IssueForm(request):
+# 	return render(request, 'students/add_book_issue.html')
+
+def issue_book(request):
+    return render(request,'students/add_book_issue.html')
+
+def  view_issue(request):
+    return render(request,'students/issue_records.html')
+
+def add_book_issue(request):
+	if request.method=="POST":
+		print("aaaaa")
+		print(request.POST)
+		id = request.POST['id']
+		student_id = request.POST['student_id']
+		borrow_date = request.POST['borrow_date']
+		return_date = request.POST['return_date']
+		b = issue_book(id=id, student_id=student_id, borrow_date=borrow_date, return_date=return_date)
+		b.save()
+		messages.success(request, 'Book was successfully issued')
+		return redirect('issue_record')
+	else:
+		messages.error(request, 'There was an error requesting your book!! please try again')
+		return redirect('issue_record')
+
+    #     form = BookIssueForm(request.POST)
+    #     if form.is_valid():
+    #         # save data
+    #         unsaved_form=form.save(commit=False)
+    #         book_to_save=BookInstance.objects.get(id=unsaved_form.book_instance.id)
+    #         book_to_save.Is_borrowed=True
+    #         book_to_save.save()
+    #         form.save()
+    #         form.save_m2m()
+    #     return redirect('issue_records.html')
+    # else:
+    #     context={'form':Book_IssueForm,"book":BookInstance.objects.filter(Is_borrowed=False)}
+    #     return render(request, 'students/add_book_issue.html',context=context)
+
+# def borrow(request):
+# 	if request.method =='POST':
+# 		print("aaaaa")
+# 		print(request.POST)
+# 		id = request.POST['id']
+# 		student = request.POST['student']
+# 		borrow_date = request.POST['borrow_date']
+# 		return_date = request.POST['return_date']
+# 		b = Borrow(id=id, student=student, borrow_date=borrow_date, return_date=return_date)
+# 		b.save()
+# 		messages.success(request, 'Book was successfully requested')
+# 		return redirect('borrow_form')
+# 	else:
+# 		messages.error(request, 'There was an error requesting your book!! please try again')
+# 		return redirect('borrow_form')
+	 
+# class BorrowbookView(LoginRequiredMixin, ListView):
+# 	model = borrow
+# 	template_name = 'students/book_list.html'
+# 	context_object_name = 'borrow'
+# 	paginate_by = 3
+
+# 	def get_queryset(self):
+# 		return Book.objets.order_by(-id)
+
 
 
 @login_required
@@ -216,38 +275,15 @@ def send_feedback(request):
 	    return redirect('feedback_form')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class UBookListView(LoginRequiredMixin,ListView):
 	model = Book
 	template_name = 'publisher/book_list.html'
 	context_object_name = 'books'
 	paginate_by = 2
 
-	def get_queryset(self):
-		return Book.objects.order_by('-id')
+	# def get_queryset(self):
+	# 	# return Book.objects.order_by('student_id')
+	# 	return Book.objects
 
 @login_required
 def uabook(request):
@@ -263,14 +299,17 @@ def uabook(request):
 		user_id = current_user.id
 		username = current_user.username
 
+		# user =User.objects.filter(id=cu)
+
 		a = Book(title=title, author=author, year=year, publisher=publisher, 
-			desc=desc, cover=cover, pdf=pdf, uploaded_by=username, user_id=user_id)
+			desc=desc, cover=cover, pdf=pdf, uploaded_by=request.user)
+		# user_id=user_id
 		a.save()
 		messages.success(request, 'Book was uploaded successfully')
 		return redirect('publisher')
 	else:
-	    messages.error(request, 'Book was not uploaded successfully')
-	    return redirect('uabook_form')	
+		messages.error(request, 'Book was not uploaded successfully')
+		return redirect('uabook_form')	
 
 
 
@@ -296,36 +335,7 @@ class UListChat(LoginRequiredMixin, ListView):
 		return Chat.objects.filter(posted_at__lt=timezone.now()).order_by('posted_at')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Librarian views
+###### Librarian views
 def librarian(request):
 	book = Book.objects.all().count()
 	user = User.objects.all().count()
@@ -510,19 +520,7 @@ class LListChat(LoginRequiredMixin, ListView):
 		return Chat.objects.filter(posted_at__lt=timezone.now()).order_by('posted_at')
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-# Admin views
+####### Admin views
 
 def dashboard(request):
 	book = Book.objects.all().count()
@@ -533,10 +531,13 @@ def dashboard(request):
 	return render(request, 'dashboard/home.html', context)
 
 def create_user_form(request):
-    choice = ['1', '0', 'Publisher', 'Admin', 'Librarian']
+    choice = ['1', '0', 'Publisher', 'Admin', 'Librarian', 'students']
     choice = {'choice': choice}
 
     return render(request, 'dashboard/add_user.html', choice)
+
+def create_student_form(request):
+      return render(request, 'dashboard/add_student.html')
 
 
 class ADeleteUser(SuccessMessageMixin, DeleteView):
@@ -545,12 +546,25 @@ class ADeleteUser(SuccessMessageMixin, DeleteView):
     success_url = reverse_lazy('aluser')
     success_message = "Data successfully deleted"
 
+class AdminDeleteStudent(SuccessMessageMixin, DeleteView):
+    model = Student
+    form_class = StudentForm
+    template_name='dashboard/confirm_deleted.html'
+    success_url = reverse_lazy('studentlist')
+    success_message = "Data successfully deleted"
 
 class AEditUser(SuccessMessageMixin, UpdateView): 
     model = User
     form_class = UserForm
     template_name = 'dashboard/edit_user.html'
     success_url = reverse_lazy('aluser')
+    success_message = "Data successfully updated"
+
+class AdminEditStudent(SuccessMessageMixin, UpdateView): 
+    model = Student
+    form_class = StudentForm
+    template_name = 'dashboard/edit_student.html'
+    success_url = reverse_lazy('studentlist')
     success_message = "Data successfully updated"
 
 class ListUserView(generic.ListView):
@@ -561,6 +575,24 @@ class ListUserView(generic.ListView):
 
     def get_queryset(self):
         return User.objects.order_by('-id')
+
+class ListStudentView(generic.ListView):
+    model = Student
+    template_name = 'dashboard/list_students.html'
+    context_object_name = 'students'
+    paginate_by = 4
+
+    def get_queryset(self):
+        return Student.objects.order_by('-id')
+
+# class ListBorrowView(generic.ListView):
+#     model = Borrow
+#     template_name = 'students/borrow.html'
+#     context_object_name = 'borrows'
+#     paginate_by = 4
+
+#     def get_queryset(self):
+#         return Student.objects.order_by('-id')
 
 def create_user(request):
     choice = ['1', '0', 'Publisher', 'Admin', 'Librarian']
@@ -578,29 +610,46 @@ def create_user(request):
             if userType == "Publisher":
                 a = User(first_name=first_name, last_name=last_name, username=username, email=email, password=password, is_publisher=True)
                 a.save()
-                messages.success(request, 'Member was created successfully!')
+                messages.success(request, 'Publisher created successfully!')
                 return redirect('aluser')
             elif userType == "Admin":
                 a = User(first_name=first_name, last_name=last_name, username=username, email=email, password=password, is_admin=True)
                 a.save()
-                messages.success(request, 'Member was created successfully!')
+                messages.success(request, 'Admin created successfully!')
                 return redirect('aluser')
             elif userType == "Librarian":
                 a = User(first_name=first_name, last_name=last_name, username=username, email=email, password=password, is_librarian=True)
                 a.save()
-                messages.success(request, 'Member was created successfully!')
+                messages.success(request, 'Librarian created successfully!')
                 return redirect('aluser')    
             else:
                 messages.success(request, 'Member was not created')
                 return redirect('create_user_form')
     else:
         return redirect('create_user_form')
+    
+def create_student(request):
+	if request.method == 'POST':
+		id=request.POST['id']
+		first_name=request.POST['first_name']
+		last_name=request.POST['last_name']
+		email=request.POST['email']
+		phone=request.POST['phone']
+		s = Student(id=id, first_name=first_name, last_name=last_name, email=email, phone=phone)
+		s.save()
+		messages.success(request, 'student was added successfully!')
+		return redirect('studentlist')
+	else:
+		return redirect('create_student_form')
 
 
 class ALViewUser(DetailView):
     model = User
     template_name='dashboard/user_detail.html'
 
+class AdminlistViewStudent(DetailView):
+	model = Student
+	template_name='dashboard/student_detail.html'
 
 
 class ACreateChat(LoginRequiredMixin, CreateView):
@@ -643,16 +692,17 @@ def aabook(request):
 		cover = request.FILES['cover']
 		pdf = request.FILES['pdf']
 		current_user = request.user
-		user_id = current_user.id
+		# user_id = current_user.id
 		username = current_user.username
+		
 
 		a = Book(title=title, author=author, year=year, publisher=publisher, 
-			desc=desc, cover=cover, pdf=pdf, uploaded_by=username, user_id=user_id)
+			desc=desc, cover=cover, pdf=pdf, uploaded_by=request.user)
 		a.save()
 		messages.success(request, 'Book was uploaded successfully')
 		return redirect('albook')
 	else:
-	    messages.error(request, 'Book was not uploaded successfully')
+	    messages.error(request, 'Error updating book')
 	    return redirect('aabook_form')
 
 
@@ -663,8 +713,7 @@ class ABookListView(LoginRequiredMixin,ListView):
 	paginate_by = 3
 
 	def get_queryset(self):
-		return Book.objects.order_by('-id')
-
+		return Book.objects.order_by('id')
 
 
 
@@ -675,7 +724,7 @@ class AManageBook(LoginRequiredMixin,ListView):
 	paginate_by = 3
 
 	def get_queryset(self):
-		return Book.objects.order_by('-id')
+		return Book.objects.order_by('id')
 
 
 
@@ -684,14 +733,14 @@ class ADeleteBook(LoginRequiredMixin,DeleteView):
 	model = Book
 	template_name = 'dashboard/confirm_delete2.html'
 	success_url = reverse_lazy('ambook')
-	success_message = 'Data was dele successfully'
+	success_message = 'Data was deleted successfully'
 
 
 class ADeleteBookk(LoginRequiredMixin,DeleteView):
 	model = Book
 	template_name = 'dashboard/confirm_delete.html'
 	success_url = reverse_lazy('dashboard')
-	success_message = 'Data was dele successfully'
+	success_message = 'Data was deleted successfully'
 
 
 class AViewBook(LoginRequiredMixin,DetailView):
@@ -770,7 +819,6 @@ def asearch(request):
                         res.append(i)
 
 
-                # word variable will be shown in html when user click on search button
                 word="Searched Result :"
                 print("Result")
 

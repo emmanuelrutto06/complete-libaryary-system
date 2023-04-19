@@ -7,7 +7,13 @@
     <meta name="description" content="">
     <meta name="author" content="">
     {% block title %}{% endblock %}
-    <title>Pelcon</title>
+    <title>KCA Library System</title>
+    <style>  
+        body  
+        {  
+        background-image:url("https://assets.weforum.org/article/image/responsive_big_webp_hySrQhk9QgN45B-0z8PR0bd8ZRyDZ9LnvzPSGaIb91Q.webp");  
+        }  
+        </style> 
 
     {% load static %}
     <!-- Custom fonts for this template-->
@@ -30,12 +36,12 @@
     {% block stylesheet %}{% endblock %}
 </head>
 
-<body id="page-top" style="background-color: #decdc3">
+<body id="page-top" style="background-color:white">
 
 <!-- headers-->
-<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand navbar-white bg-white fixed-top">
 
-    <a class="navbar-brand mr-1 text-primary" href="{% url 'publisher' %}"><h2>BookApp</h2></a>
+    <a class="navbar-brand mr-1 text-primary" href="{% url 'publisher' %}"><h2>KCA Lib</h2></a>
 
     <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
@@ -43,7 +49,7 @@
         <a class="nav-link" href="{% url 'publisher' %}">Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'ulchat' %}">Group Chat</a>
+        <a class="nav-link" href="{% url 'ulchat' %}">KCA Group Chat</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="{% url 'request_form' %}">Delete Request</a>
@@ -52,7 +58,7 @@
         <a class="nav-link" href="{% url 'feedback_form' %}">Send Feedback</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="{% url 'about' %}">About Us</a>
+        <a class="nav-link" href="{% url 'about' %}">About KCA Lib</a>
       </li>
     </ul>
   </div>
@@ -60,10 +66,10 @@
     <!-- Navbar Search -->
 <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="{% url 'usearch' %}">
         <div class="input-group">
-            <input type="text" class="form-control" name="query" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" name="query" placeholder="Search data" aria-label="Search" aria-describedby="basic-addon2">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                    <i class="fas fa-search"></i>
+                <button class="btn btn-secondary" type="submit">
+                    <i class="fa fa-search"></i>
                 </button>
             </div>
         </div>
@@ -73,7 +79,7 @@
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-fw text-primary"></i>
+                <i class="fas fa-user-circle fa-fw text-secondary"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item">{{ user.username }}</a>

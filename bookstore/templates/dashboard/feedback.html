@@ -27,14 +27,14 @@
     {% for feedback in feedbacks %}
 
 
-        <div class="chat" style="width: 150%; background: white; box-shadow: 2px 0px 25px 20px #111;">
+        <div class="chat" style="width: 150%; background: rgb(151, 24, 24); box-shadow: 2px 0px 25px 20px #111;">
                 
                 <strong><small class="chat-user-special text-primary"> {{ feedback.feedback }}</small></strong>
 
         </div><br><br><br>
 
     {% empty %}
-    <h1 class="heading">No delete request</h1><br>
+    <h1 class="heading">No Feedback as of now!</h1><br>
 
     {% endfor %}
 

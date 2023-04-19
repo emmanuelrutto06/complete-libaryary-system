@@ -8,13 +8,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
     {% block title %}{% endblock %}
-    <title>PIMS</title>
-
-
+    <title>KCA Library System</title>
+    <style>  
+        body  
+        {  
+        background-image: url("https://assets.weforum.org/article/image/responsive_big_webp_hySrQhk9QgN45B-0z8PR0bd8ZRyDZ9LnvzPSGaIb91Q.webp");  
+        }  
+        </style> 
     {% block stylesheets %}
-      <!-- Bootstrap CSS -->
-   
-      <!-- Custom CSS -->
       <style media="screen">
         .invalid {
           color: #dc3545;
@@ -29,20 +30,25 @@
           margin: auto 0 0;
           height: 56px;
         }
+        /*.sidebar {
+         background-color: #224562;
+         color: #224562;
+         background-image: url("https://assets.weforum.org/article/image/responsive_big_webp_hySrQhk9QgN45B-0z8PR0bd8ZRyDZ9LnvzPSGaIb91Q.webp");
+         background-size: cover;
+         background-position: center;
+         background-repeat: no-repeat;
+        border:none;
+    }*/
       </style>
     {% endblock stylesheets %}
 
     {% load static %}
-    <!-- Custom fonts for this template-->
     <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
        <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
-      <!-- Font awesome CSS -->
       <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
 
-    <!-- Page level plugin CSS-->
     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/master.css' %}">
     <link href="{% static 'css/sb-admin.css' %}" rel="stylesheet">
     {% block stylesheet %}{% endblock %}
@@ -50,31 +56,29 @@
 
 <body id="page-top">
 
-<!-- headers-->
-<nav class="navbar navbar-expand navbar-dark bg-dark fixed-top">
+<nav class="navbar navbar-expand navbar-white bg-white fixed-top">
 
-    <a class="navbar-brand mr-1 text-primary" href="">Library Dashboard</a>
+    <a class="navbar-brand mr-1 text-primary" href="">KCA Library Dashboard</a>
     <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
     </button>
 
-    <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0" action="{% url 'asearch' %}">
         <div class="input-group">
-            <input type="text" class="form-control" name="query" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+            <input type="text" class="form-control" name="query" placeholder="Search for data" aria-label="Search" aria-describedby="basic-addon2" style="color: white;">
             <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
+                <button class="btn btn-secondary" type="submit">
                     <i class="fas fa-search"></i>
+                    <!--<i class="fas fa-search"></i>-->
                 </button>
             </div>
         </div>
     </form>
 
-    <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-user-circle fa-fw text-primary"></i>
+                <i class="fas fa-user-circle fa-fw text-secondary"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
                 <a class="dropdown-item">{{ user.username }}</a>
@@ -94,60 +98,90 @@
 
     <li class="nav-item active">
         <a class="nav-link" href="{% url 'dashboard' %}">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Administrator Dashboard</span>
+            <i class='fas fa-tachometer-alt' style='font-size:30px;color:rgb(26, 29, 204)'></i>
+            <span>Admin Dashboard</span>
         </a>
     </li>
     <li class="nav-item active">
         <a class="nav-link" href="">
-            <i class="fas fa-user-circle fa-fw text-warning"></i>
-            <span style="color: yellow">Logged As {{ user.username }}</span>
+            <i class="fa fa-user-circle-o" style="font-size:30px;color:rgb(60, 219, 21)"></i>
+            <span style="color: rgb(60, 219, 21)">Logged As {{ user.username }}</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'alchat' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">KCA Group Chat</span>
+            <i class="fas fa-pen text-secondary" ></i>
+            <span style="color: rgb(29, 166, 207)">KCA Group Chat</span>
         </a>
     </li>
         <li class="nav-item">
         <a class="nav-link" href="{% url 'aabook_form' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">Add Book</span>
+            <i class="fas fa-book text-secondary"></i>
+            <span style="color: rgb(29, 166, 207)">Add Book</span>
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="{% url 'albook' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">Recent Added Books</span>
+            <i class="fas fa-book text-secondary"></i>
+            <span style="color:rgb(29, 166, 207)">Recent Added Books</span>
         </a>
     </li>
 
       <li class="nav-item">
         <a class="nav-link" href="{% url 'ambook' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">Manage Books</span>
+            <i class="fas fa-book text-secondary"></i>
+            <span style="color:rgb(29, 166, 207)">Manage Books</span>
         </a>
     </li>
      <li class="nav-item">
         <a class="nav-link" href="{% url 'adrequest' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">Delete Request</span>
+            <i class="fas fa-book text-secondary"></i>
+            <span style="color: rgb(29, 166, 207)">Delete Request</span>
         </a>
     </li>
      <li class="nav-item">
         <a class="nav-link" href="{% url 'afeedback' %}">
-            <i class="fas fa-book text-primary"></i>
-            <span style="color: white">KCA User Feedback</span>
+            <i class="fas fa-book text-secondary"></i>
+            <span style="color:rgb(29, 166, 207)">KCA User Feedback</span>
         </a>
     </li>
      <li class="nav-item">
         <a class="nav-link" href="{% url 'aluser' %}">
-            <i class="fas fa-user text-primary"></i>
-            <span style="color: white">Manage User</span>
+            <i class="fas fa-user text-secondary"></i>
+            <span style="color:rgb(29, 166, 207)">Manage User</span>
         </a>
     </li>
-</ul>    
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'studentlist' %}">
+                <i class="fas fa-user text-secondary"></i>
+                <span style="color:rgb(29, 166, 207)">Manage Student</span>
+            </a>
+    </li>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'book_issue' %}">
+        <i class="fas fa-user text-secondary"></i>
+        <span style="color:rgb(29, 166, 207)">Issue Book</span>
+    </a>
+</li>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'studentlist' %}">
+        <i class="fas fa-user text-secondary"></i>
+        <span style="color:rgb(29, 166, 207)">View all Archived Books</span>
+    </a>
+</li>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'studentlist' %}">
+        <i class="fas fa-user text-secondary"></i>
+        <span style="color:rgb(29, 166, 207)">View all Issued Books</span>
+    </a>
+</li>
+
+</ul>  
+
+
 
     {% block body %}{% endblock %}
     {% block content %}{% endblock content %}
@@ -167,12 +201,12 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Are your sure you want to Logout?</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">Select "Logout" if you want to end the currently active session.</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>

@@ -8,8 +8,8 @@
 
 <div class="container-fluid">
 <div class="row">
-<div class="col-sm-3" style="color: red">
-  <p style="color: blue"></p>  
+<div class="col-sm-3" style="color: rgb(5, 177, 105)">
+  <p style="color: rgb(40, 226, 56)"></p>  
 </div>
 
 
@@ -18,13 +18,13 @@
       <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table text-primary"></i>
-                    Fill In Information Of Books
+                    Fill-in the Book's Information
                 </div>
                 <div class="card-body">
             <form action="{% url 'uabook' %}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
         <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="title" placeholder="Book Title" required="required"></div>
+                <div class="col"><input type="text" class="form-control" name="title" placeholder="Book's Title" required="required"></div>
         </div>
         <div class="form-group">
                 <div class="col"><input type="text" class="form-control" name="author" placeholder="Author" required="required"></div>                 
@@ -35,21 +35,21 @@
         </div>
 
         <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="year" placeholder="Publication Year" required="required"></div>
+                <div class="col"><input type="text" class="form-control" name="year" placeholder="Year of Publication" required="required"></div>
         </div>
 
       <div class="form-group">
-                <div class="col"><input type="text" class="form-control" name="desc" placeholder="Book Description" required="required"></div>
+                <div class="col"><input type="text" class="form-control" name="desc" placeholder="Book's Description" required="required"></div>
         </div>
 
 
         <div class="form-group">
-                <div class="col"><label>Choose Book Cover</label>
+                <div class="col"><label>Select Book Cover</label>
                     <input type="file" id="myFile" name="cover" placeholder="Report Attachment" enctype="multipart/form-data"></div>
         </div>
 
         <div class="form-group">
-                <div class="col"><label>Choose PDF Book</label>
+                <div class="col"><label>Select PDF Book</label>
                     <input type="file" id="myFile" name="pdf" placeholder="Report Attachment" enctype="multipart/form-data"></div>
         </div>
 
@@ -69,7 +69,7 @@
 
 
 
-<div class="col-sm-3" style="color: red">
+<div class="col-sm-3" style="color: rgb(18, 190, 104)">
 </div>
 
 </div>

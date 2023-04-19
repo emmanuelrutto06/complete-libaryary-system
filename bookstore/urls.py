@@ -70,6 +70,34 @@ urlpatterns = [
  path('aeuser/<int:pk>', views.AEditUser.as_view(), name='aeuser'),
  path('aduser/<int:pk>', views.ADeleteUser.as_view(), name='aduser'),
 
+ #Students URL's
+  # path('borrowform/', views.borrow_form, name='borrowform'),
+  # path('borrow/', views.borrow, name='borrow'),
+  # path('studentlist/', views.ListBorrowView.as_view(), name='Borrow'),
+  path('studentform/', views.students_form, name='studentform'),
+  path('addstudents', views.add_studentform, name='adding'),
+  path('create_student_form/', views.create_student_form, name='create_student_form'),
+  path('studentlist/', views.ListStudentView.as_view(), name='studentlist'),
+  path('create_student/', views.create_student, name='create_student'),
+  path('adminlistViewStudent/<int:pk>', views.AdminlistViewStudent.as_view(), name='AdminlistViewStudent'),
+  path('admineditstudent/<int:pk>', views.AdminEditStudent.as_view(), name='editstudent'),
+  path('admindeletestudent/<int:pk>', views.AdminDeleteStudent.as_view(), name='deletestudent'),
+  path('add_book_issue', views.add_book_issue, name='book_issue'),
+  path('view_books_issued', views.view_issue, name='show_issue_record'),
+  path('issue_book', views.issue_book, name='issue_record'),
+
+
+  
+
+
+
+
+
+
+
+
+
+
 
 
 

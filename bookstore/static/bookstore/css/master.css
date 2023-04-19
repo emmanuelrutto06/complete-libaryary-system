@@ -47,7 +47,7 @@ li{
   border-radius: 0px;
 }
 .chat {
-  background: rgb(220, 20, 60); 
+  background: rgb(54, 219, 13); 
   border-radius: 10px; 
   width: 70%; 
   padding: 10px;
@@ -56,7 +56,7 @@ li{
  	font-family: 'Ubuntu', cursive;
 }
 .chat-user-special{
-  color: yellow;
+  color: rgb(61, 235, 27);
   font-size: 12px;
 }
 .chat-date{

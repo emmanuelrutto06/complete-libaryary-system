@@ -1,9 +1,5 @@
 {% load static %}
 
-<video loop muted autoplay playsinline class="video">
-  <source src="{% static 'css/back.mp4' %}" type="video/mp4" />
-</video>
-<!-- Custom styles for this template-->
     <link href="{% static 'bookapp/css/login.css' %}" rel="stylesheet">
     <link href="{% static 'bookstore/css/bootstrap/bootstrap.min.js' %}" rel="stylesheet">
     <link href="{% static 'bookstore/js/login.css' %}" rel="stylesheet">
@@ -15,14 +11,12 @@
 <head>
 	<title>Dashboard</title>
 </head>
-<!--Coded with love by Emmanuel rutto-->
 <body> 
 
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
@@ -33,14 +27,14 @@
 <br> 
 
 
-		 <h1 style="color: white" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1">Ruto's Library System</span> <span class="g"></span><span class="l"></span><span class="e"></span></h1>
+		 <h1 style="color: white" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1">KCA University Library System</span> <span class="g"></span><span class="l"></span><span class="e"></span></h1>
 
 <div class="row">
 	<aside class="col-sm-4">
-	</aside> <!-- col.// -->
+	</aside> 
 
 	<aside class="col-sm-4">
-		<h1 style="color: yellow; font-weight: bold; font-size: 40px" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1"></span>Ruto's Library System<span class="g"></span><span class="l"></span><span class="e"></span></h1>
+		<h1 style="color: rgb(20, 247, 88); font-weight: bold; font-size: 40px" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1"></span>System Register page<span class="g"></span><span class="l"></span><span class="e"></span></h1>
 		<br>
 <div class="card">
 <article class="card-body" style="padding-top: 0px">
@@ -54,7 +48,7 @@
     <div class="card">
       <div class="card-header">
         <center><h3>Register Here</h3></center>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end">..>
           <span><i class="fab fa-user"></i></span>
         </div>
       </div>
@@ -62,30 +56,30 @@
         <form method="POST" action="{% url 'register' %}">
           {% csrf_token %}
           <div class="input-group form-group">
-            <div class="input-group-prepend">
+            <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-user"></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="username" name="username" required="">
+            <input type="text" class="form-control" placeholder="Your username" name="username" required="">
             
           </div>
           <div class="input-group form-group">
-            <div class="input-group-prepend">
+            <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-edit"></i></span>
             </div>
             <input type="email" class="form-control" placeholder="email" name="email" required="">
           </div>
            <div class="input-group form-group">
-            <div class="input-group-prepend">
+            <div class="input-group-append">
               <span class="input-group-text"><i class="fas fa-key"></i></span>
             </div>
             <input type="password" class="form-control" placeholder="password" name="password" required="">
           </div>
           <div class="form-group">
-            <a href="{% url 'home' %}"><input name="sign-up" value="Login" class="btn float-right login_btn"></a>
+            <a href="{% url 'home' %}"><input name="sign-up" value="Login" style=background-color:white class="btn float-right login_btn"></a>
           </div>
 
           <div class="form-group">
-            <input type="submit" name="sign-up" value="Register" class="btn float-left login_btn">
+            <input type="submit" name="sign-up" value="Register" style=background-color:white class="btn float-left login_btn">
           </div>
         </form>
    </div>

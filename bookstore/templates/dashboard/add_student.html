@@ -1,0 +1,116 @@
+{% extends 'dashboard/base.html' %}
+
+
+{% load static %}
+
+{% block body %}
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">User</a>
+                </li>
+                <li class="breadcrumb-item active">Add</li>
+            </ol>
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                    Add user
+                </div>
+                <div class="card-body">
+                  <form class="form-horizontal" action="{% url 'create_student' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="id" placeholder="student_id" id="inputFirst" required="">
+                                    <label for="inputFirst">Student ID</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="first_name" placeholder="first name" id="inputLast" required="">
+                                    <label for="inputLast">First Name</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input type="text" class="form-control" name="last_name" placeholder="last name" id="inputdescription" required="">
+                                    <label for="inputdescription">Last Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                    <input class="form-control" type="tel" name="email" placeholder="Email" id="inputMobile" required="">
+                                    <label for="inputMobile">Email</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col-md-6">
+                               <div class="form-label-group">
+                                    <input type="text" class="form-control" name="phone" placeholder="Phone" id="inputdescription" required="">
+                                    <label for="inputdescription">phone number</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-label-group">
+                                          
+</div>
+</div>
+</div>
+</div>
+<button class="btn btn-primary btn-block" type="submit">Add Student &nbsp;&nbsp;&nbsp;<span></span></button>
+</form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,31 +1,26 @@
 {% load static %}
 
-<video loop muted autoplay playsinline class="video">
-  <source src="{% static 'css/back.mp4' %}" type="video/mp4" />
-</video>
-<!-- Custom styles for this template-->
+
     <link href="{% static 'bookstore/css/login.css' %}" rel="stylesheet">
     <link href="{% static 'bookstore/css/bootstrap/bootstrap.min.js' %}" rel="stylesheet">
     <link href="{% static 'bookstore/js/login.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/datatables/dataTables.bootstrap4.css' %}" rel="stylesheet">
-
-
     
 <head>
-	<title>Ruto's Library System</title>
+	<title>The KCA Library Management System</title>
 </head>
-<!--Coded with love by Emmanuel rutto-->
-<body> 
-
+<body>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+<link rel="stylesheet" type="text/css" href="css/all.css">
+
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
 
 
 
@@ -33,52 +28,53 @@
 <br> 
 
 
-		 <h1 style="color: white" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1">Ruto's Library System</span> <span class="g"></span><span class="l"></span><span class="e"></span></h1>
+		 <h1 style="color: rgb(0, 255, 34)" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1">Welcome to the KCA University Library System</span> <span class="g"></span><span class="l"></span><span class="e"></span></h1>
 
 <div class="row">
 	<aside class="col-sm-4">
 	</aside> <!-- col.// -->
 
 	<aside class="col-sm-4">
-		<h1 style="color: yellow; font-weight: bold; font-size: 40px" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1"></span>Ruto's Library System<span class="g"></span><span class="l"></span><span class="e"></span></h1>
+		<h1 style="color: rgb(0, 255, 34); font-weight: bold; font-size: 40px" class="text-md-center"><span class="g"></span><span class="o"></span><span class="o1"></span>System Login Page<span class="g"></span><span class="l"></span><span class="e"></span></h1>
 		<br>
 <div class="card">
-<article class="card-body" style="padding-top: 0px">
+<article class="card-body" style="padding-top: 30px">
 <div class="d-flex justify-content-center">
 
 
 
 
-	<div class="container">
+	<!--<div class="container">
   <div class="d-flex justify-content-center h-100">
-    <div class="card">
+     <div class="card" >
       <div class="card-header">
-        <center><h3>Login Page</h3></center>
+          <div class="input-group form-group"style='color: blue'>-->
+        <strong><center><h3 style="color: rgb(0, 255, 34)">LOGIN <br> TO <br> CONTINUE </h3></center>
         <div class="d-flex justify-content-end">
-          <span><i class="fab fa-user"></i></span>
+          <i class="fab fa-users"></i>
         </div>
       </div>
-      <div class="card-body">
+      <!--<div class="card-body">-->
         <form method="POST" action="{% url 'login' %}">
           {% csrf_token %}
           <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-user"></i></span>
+          <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-users "style='color: rgb(0, 255, 34)'></i></span>
             </div>
-            <input type="text" class="form-control" placeholder="username" name="username" required="">
-            
+            <input type="text" class="form-control" placeholder="System username" name="username" required="">
+            <br>
           </div>
           <div class="input-group form-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            <div class="input-group-append">
+              <span class="input-group-text"><i class="fas fa-key" style='color: rgb(0, 255, 34)'></i></span>
             </div>
-            <input type="password" class="form-control" placeholder="password" name="password" required="">
+            <input type="password" class="form-control" placeholder="Your password" name="password" required="" aria-describedby="basic-addon1">         
           </div>
           <div class="form-group">
-            <input type="submit" name="sign-in" value="Sign In" class="btn float-left login_btn">
+            <input type="submit" name="Log-in" value="Log In" style=background-color:white  class="btn float-left login_btn">
           </div>
           <div class="form-group">
-            <a href="{% url 'regform' %}"><input name="sign-up" value="Register" class="btn float-right login_btn"></a>
+            <a href="{% url 'regform' %}"><input name="sign-up" value="Register" style=background-color:white class="btn float-right login_btn"></a>
           </div>
         </form>
       </div>
